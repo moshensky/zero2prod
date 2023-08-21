@@ -21,4 +21,7 @@ cargo fmt -- --check
 
 # Scan for security vulnerabilities
 cargo audit
+
+# Expands macros
+ cargo expand
 ```
