@@ -24,4 +24,13 @@ cargo audit
 
 # Expands macros
  cargo expand
+
+
+
+```
+
+## DB migrations
+
+```sh
+cargo install sqlx-cli --no-default-features --features rustls,postgres
 ```
