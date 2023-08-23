@@ -1,6 +1,8 @@
 use std::net::TcpListener;
 
 use reqwest::Client;
+use sqlx::{PgConnection, Connection};
+use zero2prod::configuration::get_configuration;
 
 fn spawn_app() -> String {
     let listener = TcpListener::bind("127.0.0.1:0").expect("Failed to bind random port.");
@@ -52,6 +54,11 @@ async fn subscribe_returns_a_200_for_valid_form_data() {
 async fn subscribe_returns_a_400_when_data_is_missing() {
     // Arrange
     let address = spawn_app();
+    let configuration = get_configuration().expect("Failed to read configuration.");
+    let connection_string = configuration.database.connection_string();
+    let connection = PgConnection::connect(&connection_string)
+        .await
+        .expect("Failed to connect to Postgres.");
     let client = Client::new();
     let test_cases = vec![
         ("name=le%20guin", "missing the email"),
