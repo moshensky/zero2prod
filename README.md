@@ -25,9 +25,12 @@ cargo audit
 # Expands macros
  cargo expand
 
-
+# Find unused dependencies
+cargo +nightly udeps
 
 ```
+
+
 
 ## DB migrations
 
