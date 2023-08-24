@@ -1,11 +1,10 @@
 # README
 
-
 ```sh
 cargo watch -x check
 
 # Command chaining
-cargo watch -x check -x test -x run
+cargo watch -x check -x test -x run | bunyan
 
 # Measure test coverage
 cargo tarpaulin --ignore-tests
@@ -13,7 +12,7 @@ cargo tarpaulin --ignore-tests
 # Lint
 cargo clippy -- -D warnings
 
-# Code format 
+# Code format
 cargo fmt
 
 # For ci
@@ -28,9 +27,9 @@ cargo audit
 # Find unused dependencies
 cargo +nightly udeps
 
+# Enable logging during tests with pretty print
+TEST_LOG=true cargo test health_check_works | bunyan
 ```
-
-
 
 ## DB migrations
 
