@@ -29,6 +29,12 @@ cargo +nightly udeps
 
 # Enable logging during tests with pretty print
 TEST_LOG=true cargo test health_check_works | bunyan
+
+# Build
+docker build --tag zero2prod --file Dockerfile .
+
+# Prepare sqlx offline for building
+cargo sqlx prepare -- --lib
 ```
 
 ## DB migrations
