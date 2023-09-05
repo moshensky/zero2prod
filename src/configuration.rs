@@ -85,6 +85,14 @@ pub fn get_configuration() -> Result<Settings, config::ConfigError> {
     let settings = config::Config::builder()
         .add_source(config::File::from(config_dir.join("base.yaml")))
         .add_source(config::File::from(config_dir.join(env_filename)))
+        // Add in settings from the environment (with a prefix of APP and
+        // '__' as separator) e.g. 'APP_APPLICATION__PORT=5001 would set
+        // the 'Settings.application.port' key
+        .add_source(
+            config::Environment::with_prefix("app")
+                .prefix_separator("_")
+                .separator("__"),
+        )
         .build()?;
     settings.try_deserialize::<Settings>()
 }
