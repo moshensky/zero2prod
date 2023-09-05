@@ -42,3 +42,12 @@ cargo sqlx prepare -- --lib
 ```sh
 cargo install sqlx-cli --no-default-features --features rustls,postgres
 ```
+
+## Prod build
+
+```sh
+docker build --tag zero2prod --file Dockerfile .
+docker run -p 8000:8000 zero2prod
+
+curl -v http://127.0.0.1:8000/health_check
+```
