@@ -48,5 +48,8 @@ features = [
 
 [dev-dependencies]
 claims = "0.7.1"
+fake = "2.8.0"
 once_cell = "1.18.0"
+quickcheck = "1.0.3"
+quickcheck_macros = "1.0.0"
 reqwest = "0.11.18"
